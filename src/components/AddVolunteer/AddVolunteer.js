@@ -1,18 +1,22 @@
 import React from "react";
 import "./AddVolunteer.css";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import useFirebase from "../../Hook/useFirebase";
 
 const AddVolunteer = () => {
+  const { user } = useFirebase();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
     fetch("http://localhost:5000/addVolunteer", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
@@ -66,7 +70,9 @@ const AddVolunteer = () => {
             </form>
             <p className="m-2 mb-2">
               already have account?{" "}
-              <span className="text-danger">create account</span>
+              <Link to="/login">
+                <span className="text-danger">create account</span>
+              </Link>
             </p>
           </div>
         </div>

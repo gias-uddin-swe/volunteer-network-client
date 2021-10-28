@@ -40,6 +40,11 @@ const Menubar = () => {
                       Events
                     </Link>
                   </li>
+                  <li className="items p-2">
+                    <Link className="items p-2" to="/myEvents">
+                      myEvents
+                    </Link>
+                  </li>
 
                   <Link to="/adminDashboard">
                     <button className="items btn btn-danger p-1 ">Admin</button>

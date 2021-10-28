@@ -11,9 +11,10 @@ const AddEvents = () => {
     watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    data.addEventEmail = user?.email;
-    fetch("http://localhost:5000/addEvents", {
+    data.email = user?.email;
+    fetch("http://localhost:5000/addEvent", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -31,7 +32,7 @@ const AddEvents = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <input
                 {...register("title")}
-                placeholder="Name"
+                placeholder="title"
                 className="p-2 m-2 w-100"
               />
               <br />

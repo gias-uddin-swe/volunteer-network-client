@@ -4,15 +4,19 @@ import "./Home.css";
 const Home = () => {
   const [events, setEvents] = useState([]);
   const [search, setSearch] = useState("");
+
   const handleInput = (e) => {
     setSearch(e.target.value);
   };
   const handleSearch = () => {
-    fetch(`http://localhost:5000/eventsSearch?search=${search}`)
+    fetch(`http://localhost:5000/searchEvent?search=${search}`)
       .then((res) => res.json())
-      .then((results) => setEvents(results));
+      .then((result) => setEvents(result));
+
+    console.log("hello bro");
   };
 
+  console.log(search);
   return (
     <div>
       <div className="text-center mt-5">
@@ -30,17 +34,13 @@ const Home = () => {
             <div className="col-md-4">
               <div className="event border border">
                 <div className="event-img">
-                  <img
-                    className="w-100"
-                    src="https://i.ibb.co/W0KHmLZ/animal-Shelter.png"
-                    alt=""
-                  />
+                  <img className="w-100" src={pd.image} alt="" />
                 </div>
                 <div
                   style={{ backgroundColor: pd?.EventColor }}
                   className="title-container p-2 "
                 >
-                  <h4>Test</h4>
+                  <h4>{pd.title}</h4>
                 </div>
               </div>
             </div>

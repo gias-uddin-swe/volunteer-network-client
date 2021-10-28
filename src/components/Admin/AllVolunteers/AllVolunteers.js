@@ -3,14 +3,16 @@ import { Table } from "react-bootstrap";
 import "./AllVolunteers.css";
 const AllVolunteers = () => {
   const [volunteer, setVounteer] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:5000/allVolunteer")
       .then((res) => res.json())
       .then((data) => setVounteer(data));
   }, []);
+
   return (
     <div>
-      <h1>AllVolunteers {volunteer.length}</h1>
+      <h1>AllVolunteers {volunteer?.length}</h1>
       <Table striped bordered hover>
         <thead>
           <tr>

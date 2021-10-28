@@ -3,9 +3,12 @@ import AddEvents from "../../AddEvents/AddEvents";
 import "./AdminDashboard.css";
 import Events from "./../../Events/Events";
 import AllVolunteers from "./../AllVolunteers/AllVolunteers";
+// import AddEvents from "./../../AddEvents/AddEvents";
 
 const AdminDashboard = () => {
-  const [control, setControl] = useState("addEvent");
+  const [control, setControl] = useState("allVolunteers");
+
+  console.log(control);
   return (
     <div className="admin-container">
       <div className="dashboard">
@@ -16,19 +19,19 @@ const AdminDashboard = () => {
                 <h6>Dashboard</h6>
                 <div className="all-menu mt-5">
                   <li
-                    onClick={() => setControl("volunteers")}
+                    onClick={() => setControl("allVolunteers")}
                     className="admin-menu p-2"
                   >
                     All Volunteers
                   </li>
                   <li
-                    onClick={() => setControl("addEvent")}
+                    onClick={() => setControl("addEvents")}
                     className="admin-menu p-2"
                   >
                     Add Events
                   </li>
                   <li
-                    onClick={() => setControl("manage")}
+                    onClick={() => setControl("allEvents")}
                     className="admin-menu p-2"
                   >
                     Manage Events
@@ -37,11 +40,9 @@ const AdminDashboard = () => {
               </div>
             </div>
             <div className="col-md-9 text-center  text-center">
-              <div className="right-part ">
-                {control === "addEvent" && <AddEvents></AddEvents>}
-                {control === "manage" && <Events></Events>}
-                {control === "volunteers" && <AllVolunteers></AllVolunteers>}
-              </div>
+              {control === "allVolunteers" && <AllVolunteers></AllVolunteers>}
+              {control === "allEvents" && <Events></Events>}
+              {control === "addEvents" && <AddEvents></AddEvents>}
             </div>
           </div>
         </div>

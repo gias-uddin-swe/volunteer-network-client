@@ -8,6 +8,8 @@ import Login from "./components/Login/Login";
 import AddEvents from "./components/AddEvents/AddEvents";
 import AddVolunteer from "./components/AddVolunteer/AddVolunteer";
 import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
+import Events from "./components/Events/Events";
+import MyEvents from "./components/MyEvents/MyEvents";
 
 function App() {
   return (
@@ -23,6 +25,12 @@ function App() {
           </Route>
           <Route exact path="/login">
             <Login></Login>
+          </Route>
+          <Route exact path="/myEvents">
+            <MyEvents></MyEvents>
+          </Route>
+          <Route exact path="/events">
+            <Events></Events>
           </Route>
           <Route exact path="/addEvents">
             <AddEvents></AddEvents>

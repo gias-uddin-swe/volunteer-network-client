@@ -4,11 +4,31 @@ import { Table } from "react-bootstrap";
 import "./Events.css";
 const Events = () => {
   const [event, setEvent] = useState([]);
+
+  const [control, setConrol] = useState(false);
+
   useEffect(() => {
     fetch("http://localhost:5000/allEvents")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => setEvent(data));
-  }, []);
+  }, [control]);
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/deleteEvent/${id}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          setConrol(!control);
+        } else {
+          setConrol(false);
+        }
+      });
+    console.log(id);
+  };
+
   return (
     <div className="container">
       <h1>Events {event?.length}</h1>
@@ -29,7 +49,12 @@ const Events = () => {
               <td>{pd.title}</td>
               <td>{pd.description}</td>
               <td>{pd.image}</td>
-              <button className="btn bg-danger p-2">Delete</button>
+              <button
+                onClick={() => handleDelete(pd._id)}
+                className="btn bg-danger p-2"
+              >
+                Delete
+              </button>
             </tr>
           </tbody>
         ))}
